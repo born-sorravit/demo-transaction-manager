@@ -20,13 +20,8 @@ export class ProjectsRepository extends Repository<ProjectsEntity> {
       : this.createQueryBuilder('project');
 
     return await queryBuilder
-      .leftJoinAndSelect('project.projectCategories', 'projectCategories')
-      .leftJoinAndSelect('projectCategories.categories', 'categories')
       .leftJoinAndSelect('project.socialMedias', 'socialMedias')
-      .leftJoinAndSelect('project.projectTokens', 'projectTokens')
-      .leftJoinAndSelect('projectTokens.tokens', 'tokens')
       .leftJoinAndSelect('project.projectDates', 'projectDates')
-      .leftJoinAndSelect('project.projectMedias', 'projectMedias')
       .select(SelectColumnProjects)
       .where('project.id = :id', { id })
       .getOne();
@@ -41,13 +36,8 @@ export class ProjectsRepository extends Repository<ProjectsEntity> {
       : this.createQueryBuilder('project');
 
     return await queryBuilder
-      .leftJoinAndSelect('project.projectCategories', 'projectCategories')
-      .leftJoinAndSelect('projectCategories.categories', 'categories')
       .leftJoinAndSelect('project.socialMedias', 'socialMedias')
-      .leftJoinAndSelect('project.projectTokens', 'projectTokens')
-      .leftJoinAndSelect('projectTokens.tokens', 'tokens')
       .leftJoinAndSelect('project.projectDates', 'projectDates')
-      .leftJoinAndSelect('project.projectMedias', 'projectMedias')
       .select(SelectColumnProjects)
       .where('project.slug = :slug', { slug })
       .getOne();

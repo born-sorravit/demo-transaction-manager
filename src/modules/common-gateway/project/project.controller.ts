@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ProjectService } from './project.service';
+import { IPaginateOptions } from 'src/utils/paginate';
+import { ISearchProjectOption } from 'src/types/projects/project.type';
 import { CreateProjectDto } from './dto/create-project.dto';
-import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Controller('project')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
 
-  @Post()
+  @Get('')
+  findAll(
+    @Query() paginateOpt: IPaginateOptions,
+    @Query() searchProjectOpt: ISearchProjectOption,
+  ) {
+    return this.projectService.findAll(paginateOpt, searchProjectOpt);
+  }
+
+  @Post('/create')
   create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectService.create(createProjectDto);
   }
 
-  @Get()
-  findAll() {
-    return this.projectService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.projectService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectService.update(+id, updateProjectDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.projectService.remove(+id);
+  @Delete('/:id')
+  softDelete(@Param('id') id: string) {
+    return this.projectService.softDeleteProject(id);
   }
 }
