@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "ce2fdd80-9aa3-4d50-b955-07f5920381dc",
+		"name": "Demo-transaction-manger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12528635",
+		"_collection_link": "https://martian-trinity-933543.postman.co/workspace/FFORWARD-~327aa8a7-5355-4ed5-92d4-0fdc61b66d1d/collection/12528635-ce2fdd80-9aa3-4d50-b955-07f5920381dc?action=share&source=collection_link&creator=12528635"
+	},
+	"item": [
+		{
+			"name": "Find all projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/common/project?limit=5&page=1&projectStatus=draft",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "projectName",
+							"value": "project 2",
+							"disabled": true
+						},
+						{
+							"key": "projectStatus",
+							"value": "draft"
+						},
+						{
+							"key": "sort",
+							"value": "asc",
+							"disabled": true
+						},
+						{
+							"key": "sortByOther",
+							"value": "apy",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find all projects",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/api/common/projects?limit=3&page=1&projectStatus=ready&category=DeFi%2CCrypto",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"common",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "projectName",
+									"value": "project 2",
+									"disabled": true
+								},
+								{
+									"key": "projectStatus",
+									"value": "ready"
+								},
+								{
+									"key": "sort",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "DeFi%2CCrypto",
+									"description": "encodeUrl \" , \" => \" %2C \"\nExample \"DeFi,Crypto\" => \"DeFi%2CCrypto\""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"4b4c3262-5dfe-45d9-936b-b57ed577eec8\",\n            \"createdAt\": \"2025-03-26T07:51:55.027Z\",\n            \"name\": \"Project 1\",\n            \"description\": \"Project 1 description\",\n            \"softCap\": \"3000000.00000000\",\n            \"hardCap\": \"10000000.00000000\",\n            \"chainId\": \"1\",\n            \"apy\": \"0.10000000\",\n            \"pricePerToken\": \"0.10000000\",\n            \"totalSupply\": \"1000000.00000000\",\n            \"status\": \"COMPLETED\",\n            \"whitePaperUrl\": \"https://youtube.com\",\n            \"contractAddress\": \"0x123\",\n            \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n            \"publishDate\": \"2025-08-30T17:00:00.000Z\",\n            \"minBuy\": \"1000.00000000\",\n            \"maxBuy\": \"6000000.00000000\",\n            \"slug\": \"/project-1\",\n            \"viewCount\": 102,\n            \"minInvestor\": 0,\n            \"hadLive\": true,\n            \"amountInvested\": 0,\n            \"jobId\": \"29\",\n            \"suspendedAt\": null,\n            \"projectCategories\": [\n                {\n                    \"id\": \"d62bb1f6-bd78-4a65-822d-36ff282d2e22\",\n                    \"categories\": {\n                        \"id\": \"3eeafc2d-b29b-44ca-b901-693e88e4d3d6\",\n                        \"name\": \"NFT\",\n                        \"description\": \"Non-Fungible Token\"\n                    }\n                },\n                {\n                    \"id\": \"7d611fd1-514a-4c52-bc26-e676631ce129\",\n                    \"categories\": {\n                        \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                        \"name\": \"Metaverse\",\n                        \"description\": \"Virtual World\"\n                    }\n                },\n                {\n                    \"id\": \"ccb48694-7922-47de-902c-8c7504d3bef7\",\n                    \"categories\": {\n                        \"id\": \"715df579-2f73-4331-8158-f7aa62e1ee6b\",\n                        \"name\": \"GameFi\",\n                        \"description\": \"Game Finance\"\n                    }\n                },\n                {\n                    \"id\": \"638c3089-406a-4761-a79d-862a294abb0f\",\n                    \"categories\": {\n                        \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                        \"name\": \"DeFi\",\n                        \"description\": \"Decentralized Finance\"\n                    }\n                },\n                {\n                    \"id\": \"7b714a90-a4e4-4ce1-9335-4b46ef4f5e47\",\n                    \"categories\": {\n                        \"id\": \"a0a50233-fcd1-42cc-9f9c-62781dd67c7b\",\n                        \"name\": \"Crypto\",\n                        \"description\": \"Cryptocurrency\"\n                    }\n                }\n            ],\n            \"socialMedias\": [\n                {\n                    \"id\": \"75cc3d28-9e2d-4d55-a957-ee311adab93e\",\n                    \"type\": \"DISCORD\",\n                    \"url\": \"https://discord3.com\"\n                },\n                {\n                    \"id\": \"1b66b660-d50b-4960-9bd2-0de9c5b74153\",\n                    \"type\": \"MEDIUM\",\n                    \"url\": \"https://medium3.com\"\n                },\n                {\n                    \"id\": \"e06ca46c-2cf4-4411-84b1-8690f6a9bfdb\",\n                    \"type\": \"X\",\n                    \"url\": \"https://x3.com\"\n                },\n                {\n                    \"id\": \"12009deb-7ee5-4359-8b1b-8fac52415521\",\n                    \"type\": \"TELEGRAM\",\n                    \"url\": \"https://telegram3.com\"\n                }\n            ],\n            \"projectTokens\": [\n                {\n                    \"id\": \"2ecffd1b-e89f-4949-9226-aa3adee05230\",\n                    \"tokenType\": \"TOKEN_INVEST\",\n                    \"tokens\": {\n                        \"id\": \"53d04b10-3f15-4dc9-93ac-2acdc83ca663\",\n                        \"name\": \"USDT\",\n                        \"symbol\": \"USDT\",\n                        \"chain\": \"ETH\",\n                        \"contractAddress\": \"0xdac17f958d2ee523a2206206994597c13d831ec7\",\n                        \"decimals\": 6,\n                        \"icon\": null\n                    }\n                },\n                {\n                    \"id\": \"15eabfd8-c5a7-4add-9aaa-d477bb877e1c\",\n                    \"tokenType\": \"TOKEN_RECEIVE\",\n                    \"tokens\": {\n                        \"id\": \"65649d06-4acf-48c9-813f-395450fcbbc6\",\n                        \"name\": \"Kaitun Coin\",\n                        \"symbol\": \"KTC\",\n                        \"chain\": \"ETH\",\n                        \"contractAddress\": \"0x4fabb145d64652a948d72533023f6e7a623c7c53\",\n                        \"decimals\": 18,\n                        \"icon\": null\n                    }\n                }\n            ],\n            \"projectDates\": [\n                {\n                    \"id\": \"b52e9988-61e3-43ed-bec4-342ad12b4473\",\n                    \"type\": \"CLAIM\",\n                    \"startDateTime\": \"2027-09-30T17:00:00.000Z\",\n                    \"endDateTime\": \"2027-10-30T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"6097d586-a53c-4915-8547-bbf3055f2fc0\",\n                    \"type\": \"REFUND\",\n                    \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"057c4041-b10b-4274-a49c-11af4df04fb0\",\n                    \"type\": \"LIVE\",\n                    \"startDateTime\": \"2025-04-01T03:23:00.000Z\",\n                    \"endDateTime\": \"2025-04-01T10:34:00.000Z\"\n                }\n            ],\n            \"projectMedias\": [\n                {\n                    \"id\": \"a290f535-91f8-49bf-a50b-308bcb95c32b\",\n                    \"mediaType\": \"BANNER\",\n                    \"value\": \"1\",\n                    \"thumbnail\": \"1\",\n                    \"order\": 1\n                }\n            ]\n        },\n        {\n            \"id\": \"e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c\",\n            \"createdAt\": \"2025-04-03T06:21:35.638Z\",\n            \"name\": \"Namtann Land\",\n            \"description\": \"Elite Manor is a luxury real estate development firm that caters to the needs of families, individuals, or investors that are looking for a home in Thailand. Headquartered in the tropical haven of Phuket, we aim to provide a peaceful abode away from the bustling city while sustaining high quality builds in which our International residents are accustomed to.Our partnership with industry leading designers and an international management team allows us to construct properties that are high quality, luxurious, yet innovative in design\",\n            \"softCap\": \"32330000.00000000\",\n            \"hardCap\": \"69500000.00000000\",\n            \"chainId\": \"1\",\n            \"apy\": \"10.00000000\",\n            \"pricePerToken\": \"0.10000000\",\n            \"totalSupply\": \"1000000.00000000\",\n            \"status\": \"SUSPEND\",\n            \"whitePaperUrl\": \"https://youtube.com\",\n            \"contractAddress\": \"0x123\",\n            \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n            \"publishDate\": \"2025-04-09T04:04:00.000Z\",\n            \"minBuy\": \"1000.00000000\",\n            \"maxBuy\": \"6000000.00000000\",\n            \"slug\": \"/Fairy Land\",\n            \"viewCount\": 2,\n            \"minInvestor\": 10,\n            \"hadLive\": true,\n            \"amountInvested\": 0,\n            \"jobId\": \"\",\n            \"suspendedAt\": \"2025-04-03T06:21:35.638Z\",\n            \"projectCategories\": [\n                {\n                    \"id\": \"e481047c-e11e-45b8-a723-497b70d78cce\",\n                    \"categories\": {\n                        \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                        \"name\": \"DeFi\",\n                        \"description\": \"Decentralized Finance\"\n                    }\n                },\n                {\n                    \"id\": \"5920cb8d-180e-4912-943e-931999f214b9\",\n                    \"categories\": {\n                        \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                        \"name\": \"Metaverse\",\n                        \"description\": \"Virtual World\"\n                    }\n                }\n            ],\n            \"socialMedias\": [\n                {\n                    \"id\": \"5f427203-3a1d-47b5-bffc-28cdf66820a0\",\n                    \"type\": \"DISCORD\",\n                    \"url\": \"https://discord.com\"\n                },\n                {\n                    \"id\": \"ff32a12f-5233-47ef-aae5-4a1fd5d57a47\",\n                    \"type\": \"MEDIUM\",\n                    \"url\": \"https://medium.com\"\n                },\n                {\n                    \"id\": \"21e4ee4c-26f7-40d1-be37-d56f7233b95d\",\n                    \"type\": \"X\",\n                    \"url\": \"https://x.com\"\n                },\n                {\n                    \"id\": \"0f8ec226-dd50-481a-bb87-086dd245a4f4\",\n                    \"type\": \"TELEGRAM\",\n                    \"url\": \"https://telegram.com\"\n                }\n            ],\n            \"projectTokens\": [\n                {\n                    \"id\": \"4e4336b7-726b-4c40-8484-69c678e8af0c\",\n                    \"tokenType\": \"TOKEN_RECEIVE\",\n                    \"tokens\": {\n                        \"id\": \"d99f578f-9b32-4e66-a6be-3651146dfb56\",\n                        \"name\": \"X Kaitun Coin symbol\",\n                        \"symbol\": \"XKTC\",\n                        \"chain\": \"ETH\",\n                        \"contractAddress\": \"0x22abb145d64652a948d72533023f6e7a623c7c53\",\n                        \"decimals\": 18,\n                        \"icon\": \"ETH.png\"\n                    }\n                },\n                {\n                    \"id\": \"154e3e39-0534-4c6d-a0fd-b16d068f8619\",\n                    \"tokenType\": \"TOKEN_INVEST\",\n                    \"tokens\": {\n                        \"id\": \"88c1e192-de91-4c65-8f76-66229666e334\",\n                        \"name\": \"BNB\",\n                        \"symbol\": \"BNB\",\n                        \"chain\": \"BSC\",\n                        \"contractAddress\": \"0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c\",\n                        \"decimals\": 18,\n                        \"icon\": null\n                    }\n                }\n            ],\n            \"projectDates\": [\n                {\n                    \"id\": \"ccea8900-21fe-4800-a97c-0120379fd3db\",\n                    \"type\": \"LIVE\",\n                    \"startDateTime\": \"2025-04-10T07:22:10.000Z\",\n                    \"endDateTime\": \"2025-04-10T08:03:00.000Z\"\n                },\n                {\n                    \"id\": \"2a5b9b44-3ee3-49d7-8f69-651489fe3064\",\n                    \"type\": \"REFUND\",\n                    \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"17af1398-8310-4ed8-bdaf-4cb38ab48d96\",\n                    \"type\": \"CLAIM\",\n                    \"startDateTime\": \"2025-09-30T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-10-30T17:00:00.000Z\"\n                }\n            ],\n            \"projectMedias\": [\n                {\n                    \"id\": \"75ad3fb3-bab1-4498-bddb-f941de8c2e47\",\n                    \"mediaType\": \"BANNER\",\n                    \"value\": \"2\",\n                    \"thumbnail\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n                    \"order\": 1\n                },\n                {\n                    \"id\": \"1912d821-7156-41fb-aeae-18e2a9696b0a\",\n                    \"mediaType\": \"BANNER\",\n                    \"value\": \"1\",\n                    \"thumbnail\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n                    \"order\": 1\n                }\n            ]\n        },\n        {\n            \"id\": \"68fa4ccd-cefc-4e44-a35c-74a0691c8087\",\n            \"createdAt\": \"2025-04-03T04:47:07.348Z\",\n            \"name\": \"Kaitun Land\",\n            \"description\": \"Elite Manor is a luxury real estate development firm that caters to the needs of families, individuals, or investors that are looking for a home in Thailand. Headquartered in the tropical haven of Phuket, we aim to provide a peaceful abode away from the bustling city while sustaining high quality builds in which our International residents are accustomed to.Our partnership with industry leading designers and an international management team allows us to construct properties that are high quality, luxurious, yet innovative in design\",\n            \"softCap\": \"32330000.00000000\",\n            \"hardCap\": \"69500000.00000000\",\n            \"chainId\": \"1\",\n            \"apy\": \"10.00000000\",\n            \"pricePerToken\": \"0.10000000\",\n            \"totalSupply\": \"1000000.00000000\",\n            \"status\": \"COMPLETED\",\n            \"whitePaperUrl\": \"https://youtube.com\",\n            \"contractAddress\": \"0x123\",\n            \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n            \"publishDate\": \"2025-08-30T17:00:00.000Z\",\n            \"minBuy\": \"1000.00000000\",\n            \"maxBuy\": \"6000000.00000000\",\n            \"slug\": \"/Fairy Land\",\n            \"viewCount\": 0,\n            \"minInvestor\": 0,\n            \"hadLive\": true,\n            \"amountInvested\": 0,\n            \"jobId\": null,\n            \"suspendedAt\": null,\n            \"projectCategories\": [\n                {\n                    \"id\": \"63d3047e-1848-4f2a-a650-64f0ee534447\",\n                    \"categories\": {\n                        \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                        \"name\": \"Metaverse\",\n                        \"description\": \"Virtual World\"\n                    }\n                },\n                {\n                    \"id\": \"ff37a72d-b881-42ab-a66c-fddec6aaebd0\",\n                    \"categories\": {\n                        \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                        \"name\": \"DeFi\",\n                        \"description\": \"Decentralized Finance\"\n                    }\n                }\n            ],\n            \"socialMedias\": [\n                {\n                    \"id\": \"0b87cba7-8bc3-4419-904a-285f86139ffa\",\n                    \"type\": \"MEDIUM\",\n                    \"url\": \"https://medium.com\"\n                },\n                {\n                    \"id\": \"74f69aec-5378-4f17-8d1e-a9f52f128c91\",\n                    \"type\": \"X\",\n                    \"url\": \"https://x.com\"\n                },\n                {\n                    \"id\": \"e29d0d0c-f09c-4a69-aed9-fcfbd7ffe316\",\n                    \"type\": \"TELEGRAM\",\n                    \"url\": \"https://telegram.com\"\n                },\n                {\n                    \"id\": \"961e59df-1bf7-4545-983e-cb21e2bb32cd\",\n                    \"type\": \"DISCORD\",\n                    \"url\": \"https://discord.com\"\n                }\n            ],\n            \"projectTokens\": [\n                {\n                    \"id\": \"2e22d314-ac5e-44f0-9e82-ebb69719283a\",\n                    \"tokenType\": \"TOKEN_INVEST\",\n                    \"tokens\": {\n                        \"id\": \"88c1e192-de91-4c65-8f76-66229666e334\",\n                        \"name\": \"BNB\",\n                        \"symbol\": \"BNB\",\n                        \"chain\": \"BSC\",\n                        \"contractAddress\": \"0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c\",\n                        \"decimals\": 18,\n                        \"icon\": null\n                    }\n                }\n            ],\n            \"projectDates\": [\n                {\n                    \"id\": \"230ceeec-7f62-4c52-981b-a120cae56a63\",\n                    \"type\": \"CLAIM\",\n                    \"startDateTime\": \"2025-09-30T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-10-30T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"c7064125-a955-4cbf-8e16-877a9c385e10\",\n                    \"type\": \"LIVE\",\n                    \"startDateTime\": \"2025-08-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-09-29T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"89449c6d-3964-4d1f-8da6-24489184f91a\",\n                    \"type\": \"REFUND\",\n                    \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n                }\n            ],\n            \"projectMedias\": [\n                {\n                    \"id\": \"38a80b17-bccd-4d4b-b84f-cbd5c8c72dec\",\n                    \"mediaType\": \"BANNER\",\n                    \"value\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.mp4\",\n                    \"thumbnail\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n                    \"order\": 1\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"itemCount\": 3,\n        \"totalItems\": 5,\n        \"itemsPerPage\": 3,\n        \"totalPages\": 2,\n        \"currentPage\": 1\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-04-21T04:26:20.350Z\",\n        \"path\": \"/api/common/projects?limit=3&page=1&projectStatus=ended\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Find project by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/common/project/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "592aed51-b057-4cbd-9d25-1e45f2d25ad4"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find by Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/api/common/projects/48dfc29b-c52d-4304-be21-2ba4859dae20",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"common",
+								"projects",
+								"48dfc29b-c52d-4304-be21-2ba4859dae20"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"48dfc29b-c52d-4304-be21-2ba4859dae20\",\n        \"createdAt\": \"2025-03-26T04:28:05.236Z\",\n        \"updatedAt\": \"2025-03-26T04:28:05.236Z\",\n        \"deletedAt\": null,\n        \"name\": \"Project 1\",\n        \"description\": \"Project 1 description\",\n        \"softCap\": \"3000000.00000000\",\n        \"hardCap\": \"10000000.00000000\",\n        \"chainId\": \"1\",\n        \"apy\": \"0.10000000\",\n        \"pricePerToken\": \"0.10000000\",\n        \"totalSupply\": \"1000000.00000000\",\n        \"status\": \"DRAFT\",\n        \"whitePaperUrl\": \"https://youtube.com\",\n        \"contactAddress\": \"0x123\",\n        \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n        \"publishDate\": \"2025-08-30T17:00:00.000Z\",\n        \"minBuy\": \"1000.00000000\",\n        \"maxBuy\": \"6000000.00000000\",\n        \"slug\": \"/project-1\",\n        \"viewCount\": 0,\n        \"projectCategories\": [\n            {\n                \"id\": \"2254784a-d35b-4690-9346-476db8d29cef\",\n                \"categories\": {\n                    \"id\": \"3eeafc2d-b29b-44ca-b901-693e88e4d3d6\",\n                    \"name\": \"NFT\",\n                    \"description\": \"Non-Fungible Token\"\n                }\n            },\n            {\n                \"id\": \"440eb7c8-e48f-4841-885b-15d9959d8ed3\",\n                \"categories\": {\n                    \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                    \"name\": \"Metaverse\",\n                    \"description\": \"Virtual World\"\n                }\n            },\n            {\n                \"id\": \"1e5021ad-43fa-4c2d-9ea0-c8fccb50a939\",\n                \"categories\": {\n                    \"id\": \"715df579-2f73-4331-8158-f7aa62e1ee6b\",\n                    \"name\": \"GameFi\",\n                    \"description\": \"Game Finance\"\n                }\n            },\n            {\n                \"id\": \"64e3b3cc-0e7c-4e2e-9e49-7c92c20ef5dd\",\n                \"categories\": {\n                    \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                    \"name\": \"DeFi\",\n                    \"description\": \"Decentralized Finance\"\n                }\n            }\n        ],\n        \"socialMedias\": [\n            {\n                \"id\": \"d22a8460-5e47-4ad5-b777-b8c5f5106b56\",\n                \"type\": \"DISCORD\",\n                \"url\": \"https://discord.com\"\n            },\n            {\n                \"id\": \"aa089c7c-bb48-4a8f-9ae7-650f83785ee8\",\n                \"type\": \"TELEGRAM\",\n                \"url\": \"https://telegram.com\"\n            },\n            {\n                \"id\": \"b73f8434-d974-445f-a6fa-b68fb770f441\",\n                \"type\": \"X\",\n                \"url\": \"https://x.com\"\n            },\n            {\n                \"id\": \"32f2e275-11b1-4f02-a5eb-cdbfe2b2d0ca\",\n                \"type\": \"MEDIUM\",\n                \"url\": \"https://medium.com\"\n            }\n        ],\n        \"projectTokens\": [\n            {\n                \"id\": \"eba50b56-d100-44e2-a808-952e2b3bb7bb\",\n                \"tokenType\": \"TOKEN_INVEST\",\n                \"tokens\": {\n                    \"id\": \"53d04b10-3f15-4dc9-93ac-2acdc83ca663\",\n                    \"name\": \"USDT\",\n                    \"symbol\": \"USDT\",\n                    \"chain\": \"ETH\",\n                    \"contractAddress\": \"0xdac17f958d2ee523a2206206994597c13d831ec7\",\n                    \"decimals\": 6\n                }\n            }\n        ],\n        \"projectDates\": [\n            {\n                \"id\": \"4860313b-1556-4a4d-ae98-a5c211324b67\",\n                \"type\": \"LIVE\",\n                \"startDateTime\": \"2025-08-31T17:00:00.000Z\",\n                \"endDateTime\": \"2025-09-29T17:00:00.000Z\"\n            },\n            {\n                \"id\": \"538fe438-8959-4c8c-bd6c-c620d33c8ab6\",\n                \"type\": \"CLAIM\",\n                \"startDateTime\": \"2025-09-30T17:00:00.000Z\",\n                \"endDateTime\": \"2025-10-30T17:00:00.000Z\"\n            },\n            {\n                \"id\": \"fbbf6d67-76fb-4b8f-933b-3646975ed8ab\",\n                \"type\": \"REFUND\",\n                \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n            }\n        ]\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-03-26T04:28:55.433Z\",\n        \"path\": \"/api/common/projects/48dfc29b-c52d-4304-be21-2ba4859dae20\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const res = pm.response.json()",
+							"console.log(res.data)",
+							"const project = res.data",
+							"pm.environment.set(\"projectId\", project.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Fairy land\",\n  \"description\": \"Elite Manor is a luxury real estate development firm that caters to the needs of families, individuals, or investors that are looking for a home in Thailand. Headquartered in the tropical haven of Phuket, we aim to provide a peaceful abode away from the bustling city while sustaining high quality builds in which our International residents are accustomed to.Our partnership with industry leading designers and an international management team allows us to construct properties that are high quality, luxurious, yet innovative in design\",\n  \"softCap\": 1000,\n  \"hardCap\": -1, // -1 หมายถึงไม่จำกัด\n  \"chainId\": \"1\",\n  \"apy\": 10,\n  \"pricePerToken\": 0.1,\n  \"totalSupply\": 1000000,\n  \"whitePaperUrl\": \"https://youtube.com\",\n  \"contractAddress\": \"0x123\",\n  \"userId\": \"7231841c-184f-4aec-9f80-0d99296855bc\",\n  \"publishDate\": \"2025-06-06 07:55:00\",\n  \"minBuy\": 10,\n  \"maxBuy\": 2000,\n  \"slug\": \"Fairy-land\",\n  \"minInvestor\":100,\n  \"amountInvested\":1600,\n  \"projectCategories\": [\n    \"65f39c3c-7287-4f82-83cd-0187c4d27828\", // FIXME : id from db\n    \"82d2123a-7cfb-44bc-9999-7dfc909f89a2\"\n  ],\n  \"socialMedias\": [\n    {\n      \"type\": \"DISCORD\",\n      \"url\": \"https://discord.com\"\n    },\n    {\n      \"type\": \"TELEGRAM\",\n      \"url\": \"https://telegram.com\"\n    },\n    {\n      \"type\": \"X\",\n      \"url\": \"https://x.com\"\n    },\n    {\n      \"type\": \"MEDIUM\",\n      \"url\": \"https://medium.com\"\n    }\n  ],\n  \"tokenInvest\": {\n    \"id\": \"8704ae8f-bb89-4cac-ac80-f107e2cbfdf2\", // FIXME : id from db\n    \"name\": \"USDC\",\n    \"symbol\": \"USDC\",\n    \"decimals\": 18,\n    \"chain\": \"ETH\",\n    \"contractAddress\": \"0xdac17f958d2ee523a2206206994597c13d831ec7\"\n  },\n  \"projectDates\": [\n    {\n      \"type\": \"LIVE\",\n      \"startDateTime\": \"2026-05-06 08:00:00\",\n      \"endDateTime\": \"2026-05-06 08:15:00\"\n    },\n    {\n      \"type\": \"CLAIM\",\n      \"startDateTime\": \"2026-10-01 00:00:00\",\n      \"endDateTime\": \"2026-10-31 00:00:00\"\n    },\n    {\n      \"type\": \"REFUND\",\n      \"startDateTime\": \"2026-11-01 00:00:00\",\n      \"endDateTime\": \"2026-11-30 00:00:00\"\n    }\n  ],\n  \"projectMedias\":[\n    {\n      \"mediaType\": \"BANNER\",\n      \"value\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n      \"thumbnail\":\n        \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n      \"order\": 1\n    },\n    {\n      \"mediaType\": \"IMAGE\",\n      \"value\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n      \"thumbnail\":\n        \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n      \"order\": 2\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/common/project/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create project",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/api/common/projects/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"common",
+								"projects",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"48dfc29b-c52d-4304-be21-2ba4859dae20\",\n        \"createdAt\": \"2025-03-26T04:28:05.236Z\",\n        \"updatedAt\": \"2025-03-26T04:28:05.236Z\",\n        \"deletedAt\": null,\n        \"name\": \"Project 1\",\n        \"description\": \"Project 1 description\",\n        \"softCap\": \"3000000.00000000\",\n        \"hardCap\": \"10000000.00000000\",\n        \"chainId\": \"1\",\n        \"apy\": \"0.10000000\",\n        \"pricePerToken\": \"0.10000000\",\n        \"totalSupply\": \"1000000.00000000\",\n        \"status\": \"DRAFT\",\n        \"whitePaperUrl\": \"https://youtube.com\",\n        \"contactAddress\": \"0x123\",\n        \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n        \"publishDate\": \"2025-08-30T17:00:00.000Z\",\n        \"minBuy\": \"1000.00000000\",\n        \"maxBuy\": \"6000000.00000000\",\n        \"slug\": \"/project-1\",\n        \"viewCount\": 0,\n        \"projectCategories\": [\n            {\n                \"id\": \"2254784a-d35b-4690-9346-476db8d29cef\",\n                \"categories\": {\n                    \"id\": \"3eeafc2d-b29b-44ca-b901-693e88e4d3d6\",\n                    \"name\": \"NFT\",\n                    \"description\": \"Non-Fungible Token\"\n                }\n            },\n            {\n                \"id\": \"440eb7c8-e48f-4841-885b-15d9959d8ed3\",\n                \"categories\": {\n                    \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                    \"name\": \"Metaverse\",\n                    \"description\": \"Virtual World\"\n                }\n            },\n            {\n                \"id\": \"1e5021ad-43fa-4c2d-9ea0-c8fccb50a939\",\n                \"categories\": {\n                    \"id\": \"715df579-2f73-4331-8158-f7aa62e1ee6b\",\n                    \"name\": \"GameFi\",\n                    \"description\": \"Game Finance\"\n                }\n            },\n            {\n                \"id\": \"64e3b3cc-0e7c-4e2e-9e49-7c92c20ef5dd\",\n                \"categories\": {\n                    \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                    \"name\": \"DeFi\",\n                    \"description\": \"Decentralized Finance\"\n                }\n            }\n        ],\n        \"socialMedias\": [\n            {\n                \"id\": \"d22a8460-5e47-4ad5-b777-b8c5f5106b56\",\n                \"type\": \"DISCORD\",\n                \"url\": \"https://discord.com\"\n            },\n            {\n                \"id\": \"aa089c7c-bb48-4a8f-9ae7-650f83785ee8\",\n                \"type\": \"TELEGRAM\",\n                \"url\": \"https://telegram.com\"\n            },\n            {\n                \"id\": \"b73f8434-d974-445f-a6fa-b68fb770f441\",\n                \"type\": \"X\",\n                \"url\": \"https://x.com\"\n            },\n            {\n                \"id\": \"32f2e275-11b1-4f02-a5eb-cdbfe2b2d0ca\",\n                \"type\": \"MEDIUM\",\n                \"url\": \"https://medium.com\"\n            }\n        ],\n        \"projectTokens\": [\n            {\n                \"id\": \"eba50b56-d100-44e2-a808-952e2b3bb7bb\",\n                \"tokenType\": \"TOKEN_INVEST\",\n                \"tokens\": {\n                    \"id\": \"53d04b10-3f15-4dc9-93ac-2acdc83ca663\",\n                    \"name\": \"USDT\",\n                    \"symbol\": \"USDT\",\n                    \"chain\": \"ETH\",\n                    \"contractAddress\": \"0xdac17f958d2ee523a2206206994597c13d831ec7\",\n                    \"decimals\": 6\n                }\n            }\n        ],\n        \"projectDates\": [\n            {\n                \"id\": \"4860313b-1556-4a4d-ae98-a5c211324b67\",\n                \"type\": \"LIVE\",\n                \"startDateTime\": \"2025-08-31T17:00:00.000Z\",\n                \"endDateTime\": \"2025-09-29T17:00:00.000Z\"\n            },\n            {\n                \"id\": \"538fe438-8959-4c8c-bd6c-c620d33c8ab6\",\n                \"type\": \"CLAIM\",\n                \"startDateTime\": \"2025-09-30T17:00:00.000Z\",\n                \"endDateTime\": \"2025-10-30T17:00:00.000Z\"\n            },\n            {\n                \"id\": \"fbbf6d67-76fb-4b8f-933b-3646975ed8ab\",\n                \"type\": \"REFUND\",\n                \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n            }\n        ]\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-03-26T04:28:05.356Z\",\n        \"path\": \"/api/common/projects/create\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update viewCount",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/common/project/update-view-count/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project",
+						"update-view-count",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5e604db3-809b-46b8-b185-286413ca81d6"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update viewCount",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/api/common/projects/update-view-count/e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"common",
+								"projects",
+								"update-view-count",
+								"e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"message\": \"Update view count success\",\n        \"viewCount\": 11\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-04-04T03:14:04.768Z\",\n        \"path\": \"/api/common/projects/update-view-count/e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Reset viewCount",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/common/project/reset-view-count/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project",
+						"reset-view-count",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5e604db3-809b-46b8-b185-286413ca81d6"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Reset viewCount",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/api/common/projects/reset-view-count/e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"common",
+								"projects",
+								"reset-view-count",
+								"e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"message\": \"Reset view count success\",\n        \"viewCount\": 0\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-04-04T03:15:02.351Z\",\n        \"path\": \"/api/common/projects/reset-view-count/e2cda7ea-c5da-48c6-a0aa-31bb0f54db2c\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Soft remove project",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/common/project/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"common",
+						"project",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "592aed51-b057-4cbd-9d25-1e45f2d25ad4"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Soft remove project",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{launchpadApi}}/common/projects/d21bb48a-e0ad-413f-b9c4-added3e80d8c",
+							"host": [
+								"{{launchpadApi}}"
+							],
+							"path": [
+								"common",
+								"projects",
+								"d21bb48a-e0ad-413f-b9c4-added3e80d8c"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"message\": \"Project deleted successfully\",\n        \"data\": {\n            \"id\": \"d21bb48a-e0ad-413f-b9c4-added3e80d8c\",\n            \"createdAt\": \"2025-04-04T02:15:51.897Z\",\n            \"name\": \"Kaidown Land\",\n            \"description\": \"Elite Manor is a luxury real estate development firm that caters to the needs of families, individuals, or investors that are looking for a home in Thailand. Headquartered in the tropical haven of Phuket, we aim to provide a peaceful abode away from the bustling city while sustaining high quality builds in which our International residents are accustomed to.Our partnership with industry leading designers and an international management team allows us to construct properties that are high quality, luxurious, yet innovative in design\",\n            \"softCap\": \"32330000.00000000\",\n            \"hardCap\": \"69500000.00000000\",\n            \"chainId\": \"1\",\n            \"apy\": \"10.00000000\",\n            \"pricePerToken\": \"0.10000000\",\n            \"totalSupply\": \"1000000.00000000\",\n            \"status\": \"DRAFT\",\n            \"whitePaperUrl\": \"https://youtube.com\",\n            \"contractAddress\": \"0x123\",\n            \"userId\": \"5de87dc6-fa06-44f3-9b8e-df38d0456809\",\n            \"publishDate\": \"2025-08-30T17:00:00.000Z\",\n            \"minBuy\": \"1000.00000000\",\n            \"maxBuy\": \"6000000.00000000\",\n            \"slug\": \"/Fairy Land\",\n            \"viewCount\": 0,\n            \"minInvestor\": 0,\n            \"hadLive\": false,\n            \"amountInvested\": 0,\n            \"jobId\": null,\n            \"projectCategories\": [\n                {\n                    \"id\": \"b952916d-2f93-4a93-82f6-d6f2db2951ce\",\n                    \"categories\": {\n                        \"id\": \"2bb3f710-2a12-40b6-a28f-20baa8d68ac1\",\n                        \"name\": \"Metaverse\",\n                        \"description\": \"Virtual World\"\n                    }\n                },\n                {\n                    \"id\": \"1d997e6a-9dad-44d8-b20c-1865773b1294\",\n                    \"categories\": {\n                        \"id\": \"9b6cff28-4882-4ed2-835d-6e3bfd0f0c57\",\n                        \"name\": \"DeFi\",\n                        \"description\": \"Decentralized Finance\"\n                    }\n                }\n            ],\n            \"socialMedias\": [\n                {\n                    \"id\": \"002b1e31-8fab-49b6-b143-a78bca7da7cb\",\n                    \"type\": \"DISCORD\",\n                    \"url\": \"https://discord.com\"\n                },\n                {\n                    \"id\": \"ffbe4958-982a-4299-aa85-768717c81d36\",\n                    \"type\": \"TELEGRAM\",\n                    \"url\": \"https://telegram.com\"\n                },\n                {\n                    \"id\": \"ec3ec9ba-b191-41d5-84ac-ed41d9abcca9\",\n                    \"type\": \"X\",\n                    \"url\": \"https://x.com\"\n                },\n                {\n                    \"id\": \"2550353d-369f-4bfb-9c08-42e45212b1b5\",\n                    \"type\": \"MEDIUM\",\n                    \"url\": \"https://medium.com\"\n                }\n            ],\n            \"projectTokens\": [\n                {\n                    \"id\": \"9c7fa71d-2295-4301-a0ed-a2d4e185a689\",\n                    \"tokenType\": \"TOKEN_RECEIVE\",\n                    \"tokens\": {\n                        \"id\": \"bae3f0b2-4dee-4ac5-8ad6-0de6ca23bfb3\",\n                        \"name\": \"Namtann symbol X\",\n                        \"symbol\": \"NTCX\",\n                        \"chain\": \"ETH\",\n                        \"contractAddress\": \"0xnTabb145d64652a948d72533023f6e7a623c7c53\",\n                        \"decimals\": 18,\n                        \"icon\": \"ETH.png\"\n                    }\n                },\n                {\n                    \"id\": \"f80fb739-4b73-4593-9bed-fcaf3de5d1cb\",\n                    \"tokenType\": \"TOKEN_INVEST\",\n                    \"tokens\": {\n                        \"id\": \"88c1e192-de91-4c65-8f76-66229666e334\",\n                        \"name\": \"BNB\",\n                        \"symbol\": \"BNB\",\n                        \"chain\": \"BSC\",\n                        \"contractAddress\": \"0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c\",\n                        \"decimals\": 18,\n                        \"icon\": null\n                    }\n                }\n            ],\n            \"projectDates\": [\n                {\n                    \"id\": \"222c0582-4fec-4763-8af2-8cd0d6e163d4\",\n                    \"type\": \"LIVE\",\n                    \"startDateTime\": \"2025-08-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-09-29T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"d69d4424-ef9f-4a22-a3b7-e6db9426f966\",\n                    \"type\": \"CLAIM\",\n                    \"startDateTime\": \"2025-09-30T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-10-30T17:00:00.000Z\"\n                },\n                {\n                    \"id\": \"8f6d6ed4-5a32-4b56-8e7e-8e31407f2f1b\",\n                    \"type\": \"REFUND\",\n                    \"startDateTime\": \"2025-10-31T17:00:00.000Z\",\n                    \"endDateTime\": \"2025-11-29T17:00:00.000Z\"\n                }\n            ],\n            \"projectMedias\": [\n                {\n                    \"id\": \"1f9380f1-32eb-406a-a8a4-296e7e96a1b5\",\n                    \"mediaType\": \"BANNER\",\n                    \"value\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.mp4\",\n                    \"thumbnail\": \"https://www.shutterstock.com/image-photo/house-tiled-driveway-lush-greenery-600nw-2479101059.jpg\",\n                    \"order\": 1\n                }\n            ]\n        }\n    },\n    \"metadata\": {\n        \"timestamp\": \"2025-04-17T06:49:28.932Z\",\n        \"path\": \"/api/common/projects/d21bb48a-e0ad-413f-b9c4-added3e80d8c\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3003/api",
+			"type": "string"
+		}
+	]
+}

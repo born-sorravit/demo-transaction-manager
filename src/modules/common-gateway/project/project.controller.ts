@@ -1,34 +1,52 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ProjectService } from './project.service';
+import { IPaginateOptions } from 'src/utils/paginate';
+import { ISearchProjectOption } from 'src/types/projects/project.type';
 import { CreateProjectDto } from './dto/create-project.dto';
-import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Controller('project')
 export class ProjectController {
-  constructor(private readonly projectService: ProjectService) {}
+  constructor(private readonly projectsService: ProjectService) {}
 
-  @Post()
+  @Get('')
+  findAll(
+    @Query() paginateOpt: IPaginateOptions,
+    @Query() searchProjectOpt: ISearchProjectOption,
+  ) {
+    return this.projectsService.findAll(paginateOpt, searchProjectOpt);
+  }
+
+  @Get('/:id')
+  findOneByIdOrSlug(@Param('id') id: string) {
+    return this.projectsService.findOne(id);
+  }
+
+  @Post('/create')
   create(@Body() createProjectDto: CreateProjectDto) {
-    return this.projectService.create(createProjectDto);
+    return this.projectsService.create(createProjectDto);
   }
 
-  @Get()
-  findAll() {
-    return this.projectService.findAll();
+  @Patch('update-view-count/:id')
+  async updateViewCount(@Param('id') id: string) {
+    return this.projectsService.updateViewCount(id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.projectService.findOne(+id);
+  @Patch('reset-view-count/:id')
+  resetViewCount(@Param('id') id: string) {
+    return this.projectsService.resetViewCount(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectService.update(+id, updateProjectDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.projectService.remove(+id);
+  @Delete('/:id')
+  softDelete(@Param('id') id: string) {
+    return this.projectsService.softDeleteProject(id);
   }
 }

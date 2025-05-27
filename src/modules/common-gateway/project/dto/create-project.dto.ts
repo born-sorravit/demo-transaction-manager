@@ -9,7 +9,9 @@ import {
   IsPositive,
   IsString,
   IsUUID,
+  Length,
   Min,
+  NotEquals,
 } from 'class-validator';
 import { IProjectDate } from 'src/interfaces/project-dates/project-dates.interface';
 import { ISocialMedias } from 'src/interfaces/social-medias/social-medias.interface';
@@ -17,6 +19,7 @@ import { ISocialMedias } from 'src/interfaces/social-medias/social-medias.interf
 export class CreateProjectDto {
   @IsString()
   @IsNotEmpty()
+  @Length(3, 75) // Ensures the name is between 3 and 100 characters.
   name: string;
 
   @IsString()
@@ -27,12 +30,16 @@ export class CreateProjectDto {
     allowNaN: false,
   })
   @IsNotEmpty()
+  @Min(0) // Ensures the value is a non-negative number.
+  @IsPositive() // Checks if the value is a positive number greater than zero.
   softCap: number;
 
   @IsNumber({
     allowNaN: false,
   })
   @IsNotEmpty()
+  @NotEquals(0) // Ensures the value is not equal to zero.
+  @Min(-1)
   hardCap?: number;
 
   @IsString()
