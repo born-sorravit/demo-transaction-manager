@@ -205,48 +205,15 @@ export class ProjectService extends BaseService {
     }
   }
 
-  sortQuery(
-    baseQuery: SelectQueryBuilder<ProjectsEntity>,
-    sort: 'ASC' | 'DESC',
-    projectStatus?: EProjectStatus,
-    sortByOther?: ESortByOther,
-  ) {
-    const finalQuery = baseQuery
-      .leftJoinAndSelect('project.projectDates', 'pd')
-      .leftJoin('project.projectDates', 'pds')
-      .addSelect(['pds.id', 'pds.type', 'pds.startDateTime', 'pds.endDateTime'])
-      .andWhere('UPPER(pd.type::text) = :type', {
-        type: EProjectDateType.LIVE.toUpperCase(),
-      });
-
-    if (projectStatus === EProjectStatus.ENDED) {
-      // ถ้า project status เป็น ENDED ให้ sort by endDateTime default เป็น ASC
-      return finalQuery
-        .addOrderBy('pd.endDateTime', sort || 'ASC')
-        .addOrderBy('project.status', 'ASC')
-        .addOrderBy('project.name', 'ASC');
-    } else if (projectStatus === EProjectStatus.LIVE) {
-      // NOTE : เช็ค sortByOther ไปเพื่อเรียงตาม viewCount ถ้าไม่ส่งไป spec การเรียงลำดับ จะ confict กับตอนที่ส่ง sort by popular มา code จะทำงานไม่ถูกต้อง
-      let sortPopular: 'ASC' | 'DESC' = 'DESC';
-      if (sortByOther === ESortByOther.POPULAR) {
-        sortPopular = sort;
+  async findOne(id: string) {
+    try {
+      const project = await this.projectsRepository.findOneWithRelations(id);
+      if (!project) {
+        throw new NotFoundException('Project not found');
       }
-      // ถ้า project status เป็น LIVE ให้ sort by startDateTime default เป็น DESC , viewCount เป็น ASC และ project name เป็น DESC
-      return finalQuery
-        .addOrderBy('pd.endDateTime', sort || 'DESC')
-        .addOrderBy('project.viewCount', sortPopular)
-        .addOrderBy('project.name', 'ASC');
-    } else if (projectStatus === EProjectStatus.READY) {
-      // ถ้า project status เป็น READY ให้ sort by startDateTime default เป็น ASC , publishDate เป็น DESC และ project name เป็น DESC
-      return finalQuery
-        .addOrderBy('pd.startDateTime', sort || 'DESC')
-        .addOrderBy('project.viewCount', 'DESC')
-        .addOrderBy('project.name', 'ASC');
-    } else {
-      // ถ้า project status ไม่เท่ากับ ENDED, LIVE หรือไม่ส่่ง status ให้ sort by startDateTime default เป็น DESC
-      return finalQuery
-        .addOrderBy('pd.startDateTime', sort || 'DESC')
-        .addOrderBy('project.name', 'ASC');
+      return this.success(project);
+    } catch (error) {
+      return this.error('Failed to retrieve project', error.message);
     }
   }
 
@@ -398,6 +365,138 @@ export class ProjectService extends BaseService {
     }
   }
 
+  async updateViewCount(id: string) {
+    try {
+      const project = await this.projectsRepository.findOneWithRelations(id);
+      if (!project) {
+        throw new NotFoundException('Project not found');
+      }
+
+      const statusCanUpdateViewCount = [
+        EProjectStatus.LIVE,
+        EProjectStatus.COMPLETED,
+        EProjectStatus.FAILED,
+        EProjectStatus.SUSPEND,
+      ];
+
+      // Check project status can't update
+      if (
+        !statusCanUpdateViewCount.includes(project.status) &&
+        project.status !== EProjectStatus.READY
+      ) {
+        throw new BadRequestException(
+          'Project status must be ready, live, completed, failed or suspend',
+        );
+      }
+
+      // ถ้า project status เป็น READY ให้ update view count เมื่อ publishDate <= now
+      if (project.status === EProjectStatus.READY) {
+        if (project.publishDate <= new Date()) {
+          await this.projectsRepository.increment({ id }, 'viewCount', 1);
+        } else {
+          return this.success({
+            message: `Can't update view count. Because time is not in the upcoming period `,
+            viewCount: project.viewCount,
+          });
+        }
+      }
+
+      // Check project can update and project status is live before suspend
+      if (
+        statusCanUpdateViewCount.includes(project.status) &&
+        project.hadLive
+      ) {
+        // Update view count
+        await this.projectsRepository.increment({ id }, 'viewCount', 1);
+      }
+
+      // Find new view count
+      const newViewCount = await this.projectsRepository.findOne({
+        where: { id },
+        select: ['viewCount'],
+      });
+
+      // Check suspend before live
+      if (project.status === EProjectStatus.SUSPEND && !project.hadLive) {
+        // ถ้า project เป็น suspend และยังไม่เคยเปลี่ยน status เป็น live จะไม่ให้อัพเดท viewCount
+        return this.success({
+          message: `Can't update view count. Because project is suspend before live`,
+          viewCount: project.viewCount,
+        });
+      } else {
+        return this.success({
+          message: 'Update view count success',
+          viewCount: newViewCount.viewCount,
+        });
+      }
+    } catch (error) {
+      return this.error(error.message as string);
+    }
+  }
+
+  async resetViewCount(id: string) {
+    try {
+      const project = await this.projectsRepository.findOneWithRelations(id);
+      if (!project) {
+        throw new NotFoundException('Project not found');
+      }
+
+      project.viewCount = 0;
+
+      await this.projectsRepository.save(project);
+      return this.success({
+        message: 'Reset view count success',
+        viewCount: project.viewCount,
+      });
+    } catch (error) {
+      return this.error(error.message as string);
+    }
+  }
+
+  sortQuery(
+    baseQuery: SelectQueryBuilder<ProjectsEntity>,
+    sort: 'ASC' | 'DESC',
+    projectStatus?: EProjectStatus,
+    sortByOther?: ESortByOther,
+  ) {
+    const finalQuery = baseQuery
+      .leftJoinAndSelect('project.projectDates', 'pd')
+      .leftJoin('project.projectDates', 'pds')
+      .addSelect(['pds.id', 'pds.type', 'pds.startDateTime', 'pds.endDateTime'])
+      .andWhere('UPPER(pd.type::text) = :type', {
+        type: EProjectDateType.LIVE.toUpperCase(),
+      });
+
+    if (projectStatus === EProjectStatus.ENDED) {
+      // ถ้า project status เป็น ENDED ให้ sort by endDateTime default เป็น ASC
+      return finalQuery
+        .addOrderBy('pd.endDateTime', sort || 'ASC')
+        .addOrderBy('project.status', 'ASC')
+        .addOrderBy('project.name', 'ASC');
+    } else if (projectStatus === EProjectStatus.LIVE) {
+      // NOTE : เช็ค sortByOther ไปเพื่อเรียงตาม viewCount ถ้าไม่ส่งไป spec การเรียงลำดับ จะ confict กับตอนที่ส่ง sort by popular มา code จะทำงานไม่ถูกต้อง
+      let sortPopular: 'ASC' | 'DESC' = 'DESC';
+      if (sortByOther === ESortByOther.POPULAR) {
+        sortPopular = sort;
+      }
+      // ถ้า project status เป็น LIVE ให้ sort by startDateTime default เป็น DESC , viewCount เป็น ASC และ project name เป็น DESC
+      return finalQuery
+        .addOrderBy('pd.endDateTime', sort || 'DESC')
+        .addOrderBy('project.viewCount', sortPopular)
+        .addOrderBy('project.name', 'ASC');
+    } else if (projectStatus === EProjectStatus.READY) {
+      // ถ้า project status เป็น READY ให้ sort by startDateTime default เป็น ASC , publishDate เป็น DESC และ project name เป็น DESC
+      return finalQuery
+        .addOrderBy('pd.startDateTime', sort || 'DESC')
+        .addOrderBy('project.viewCount', 'DESC')
+        .addOrderBy('project.name', 'ASC');
+    } else {
+      // ถ้า project status ไม่เท่ากับ ENDED, LIVE หรือไม่ส่่ง status ให้ sort by startDateTime default เป็น DESC
+      return finalQuery
+        .addOrderBy('pd.startDateTime', sort || 'DESC')
+        .addOrderBy('project.name', 'ASC');
+    }
+  }
   validateProjectDates(projectDates: IProjectDate[]): boolean {
     if (projectDates.length <= 0) {
       return false;
